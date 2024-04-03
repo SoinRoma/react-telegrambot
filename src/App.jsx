@@ -1,11 +1,11 @@
-import { Tldraw } from 'tldraw'
-import 'tldraw/tldraw.css'
+import TldrawComponent from "./components/TldrawComponent.jsx"
 
 function App() {
 
   return (
-    <div style={{ position: 'fixed', inset: 0 }}>
-      <Tldraw />
+    <div>
+      <p>Tldraw</p>
+      <TldrawComponent/>
     </div>
   )
 }
