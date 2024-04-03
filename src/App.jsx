@@ -1,12 +1,14 @@
-import TldrawComponent from "./components/TldrawComponent.jsx"
+import { Excalidraw } from "@excalidraw/excalidraw"
 
 function App() {
-
   return (
-    <div>
-      <TldrawComponent/>
-    </div>
-  )
+    <>
+      <h1 style={{ textAlign: "center" }}>Excalidraw Example</h1>
+      <div style={{ height: "500px" }}>
+        <Excalidraw />
+      </div>
+    </>
+  );
 }
 
 export default App
