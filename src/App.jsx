@@ -4,7 +4,6 @@ function App() {
 
   return (
     <div>
-      <p>Tldraw</p>
       <TldrawComponent/>
     </div>
   )
