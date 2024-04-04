@@ -17,10 +17,10 @@ function App() {
           files: excalidrawAPI.getFiles(),
           getDimensions: (width, height) => {
             const max = width > height ? width : height
-            const scale = 255 / max
-            return {width: width, height: height, scale}
+            const scale = 512 / max
+            return {width: width > height ? 512 : width, height: height > width ? 512 : height, scale}
           },
-          exportPadding: 5,
+          exportPadding: 10,
         })
         const file = new File([blob], "name.png", {type: 'image/png'})
         const formData = new FormData()
@@ -37,7 +37,7 @@ function App() {
   return (
     <>
       <div style={{height: "97vh"}}>
-        <Excalidraw langCode="ru-RU" excalidrawAPI={(api)=> setExcalidrawAPI(api)}>
+        <Excalidraw  langCode="ru-RU" excalidrawAPI={(api)=> setExcalidrawAPI(api)}>
           <MainMenu>
             <MainMenu.Item onSelect={() => saveSticker()}>Сохранить стикер</MainMenu.Item>
             <MainMenu.DefaultItems.ClearCanvas/>
