@@ -23,8 +23,10 @@ function App() {
           exportPadding: 10,
         })
         const file = new File([blob], "name.png", {type: 'image/png'})
+        const initData = window.Telegram.WebApp.initData
         const formData = new FormData()
         formData.append('file', file)
+        formData.append('initData', initData)
         await fetch('https://3a20-84-54-115-9.ngrok-free.app/sticker/create/', {
           method: 'POST',
           body: formData,
