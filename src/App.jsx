@@ -15,7 +15,11 @@ function App() {
             exportBackground: false,
           },
           files: excalidrawAPI.getFiles(),
-          getDimensions: (width, height) => { return {width: width, height: height}},
+          getDimensions: (width, height) => {
+            const max = width > height ? width : height
+            const scale = 255 / max
+            return {width: width, height: height, scale}
+          },
           exportPadding: 5,
         })
         const file = new File([blob], "name.png", {type: 'image/png'})
