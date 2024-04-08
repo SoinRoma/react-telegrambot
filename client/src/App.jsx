@@ -27,7 +27,7 @@ function App() {
         const formData = new FormData()
         formData.append('file', file)
         formData.append('initData', initData)
-        await fetch('https://3a20-84-54-115-9.ngrok-free.app/sticker/create/', {
+        await fetch('https://stickerpainterbot.altek.uz/sticker/create/', {
           method: 'POST',
           body: formData,
           mode: 'no-cors',
