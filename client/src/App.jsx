@@ -27,11 +27,18 @@ function App() {
         const formData = new FormData()
         formData.append('file', file)
         formData.append('initData', initData)
-        await fetch('https://stickerpainterbot.altek.uz/sticker/create/', {
+        const response = await fetch('https://stickerpainterbot.altek.uz/sticker/create/', {
           method: 'POST',
           body: formData,
           mode: 'no-cors',
         })
+        if (response.ok) {
+          try {
+            window.Telegram.WebApp.close()
+          } catch (e) {
+            console.log(e)
+          }
+        }
       }
     }
   }
