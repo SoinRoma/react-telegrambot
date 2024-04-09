@@ -18,7 +18,7 @@ function App() {
           getDimensions: (width, height) => {
             const max = width > height ? width : height
             const scale = 512 / max
-            return {width: width > height ? 512 : width, height: height > width ? 512 : height, scale}
+            return {width: width > height ? 512 : width * scale, height: height > width ? 512 : height * scale, scale}
           },
           exportPadding: 10,
         })
