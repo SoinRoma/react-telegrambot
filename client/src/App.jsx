@@ -44,25 +44,7 @@ function App() {
   return (
     <>
       <div style={{height: "97vh"}}>
-        <Excalidraw
-          langCode="ru-RU"
-          renderTopRightUI={() => {
-            return (
-              <button
-                style={{
-                  background: "#70b1ec",
-                  border: "none",
-                  color: "#fff",
-                  borderRadius: 10,
-                  width: "max-content",
-                  fontWeight: "bold",
-                }}
-                onClick={() => saveSticker()}>
-                Save
-              </button>
-            );
-          }}
-          excalidrawAPI={(api)=> setExcalidrawAPI(api)} >
+        <Excalidraw langCode="ru-RU" excalidrawAPI={(api)=> setExcalidrawAPI(api)} >
           <MainMenu>
             <MainMenu.Item onSelect={() => saveSticker()}>Сохранить стикер</MainMenu.Item>
             <MainMenu.DefaultItems.ClearCanvas/>
