@@ -1,0 +1,27 @@
+.your-app{
+  height: 97vh
+}
+
+.your-app .excalidraw .App-toolbar__divider {
+  display: none;
+}
+
+.your-app .excalidraw .App-toolbar__extra-tools-trigger {
+  display: none;
+}
+
+.your-app .excalidraw .layer-ui__wrapper__top-right {
+  display: none;
+}
+
+.your-app .excalidraw .layer-ui__wrapper__footer-right {
+  display: none;
+}
+
+.your-app .excalidraw .mobile-misc-tools-container label:first-child {
+  display: none;
+}
+
+.your-app .excalidraw .HintViewer {
+  display: none;
+}

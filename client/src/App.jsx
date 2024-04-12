@@ -1,5 +1,6 @@
 import {Excalidraw, MainMenu, exportToBlob } from "@excalidraw/excalidraw"
 import {useEffect, useState} from "react"
+import './index.css'
 
 function App() {
   const [excalidrawAPI, setExcalidrawAPI] = useState(null)
@@ -58,7 +59,7 @@ function App() {
 
   return (
     <>
-      <div style={{height: "97vh"}}>
+      <div className="your-app">
         <Excalidraw langCode="ru-RU" excalidrawAPI={(api)=> setExcalidrawAPI(api)} >
           <MainMenu>
             <MainMenu.Item onSelect={() => saveSticker()}>Сохранить стикер</MainMenu.Item>
