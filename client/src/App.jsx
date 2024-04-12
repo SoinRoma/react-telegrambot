@@ -46,16 +46,48 @@ function App() {
     const tg = window.Telegram.WebApp //получаем объект webapp телеграма
 
     tg.expand() //расширяем на все окно
-
-    tg.MainButton.text = "Save"; //изменяем текст кнопки
-    tg.MainButton.textColor = "#FFFFFF"; //изменяем цвет текста кнопки
-    tg.MainButton.color = "#70b1ec"; //изменяем цвет бэкграунда кнопки
+    tg.MainButton.text = "Save" //изменяем текст кнопки
+    tg.MainButton.textColor = "#FFFFFF"//изменяем цвет текста кнопки
+    tg.MainButton.color = "#70b1ec" //изменяем цвет бэкграунда кнопки
     tg.MainButton.show()
 
-    window.Telegram.WebApp.onEvent('mainButtonClicked', function(){
+    window.Telegram.WebApp.onEvent('mainButtonClicked', async function(){
       tg.MainButton.showProgress(true)
-      saveSticker()
-    });
+      if (excalidrawAPI) {
+        const elements = excalidrawAPI.getSceneElements()
+        if (elements || elements.length) {
+          const blob = await exportToBlob({
+            elements,
+            appState: {
+              exportWithDarkMode: false,
+              exportBackground: false,
+            },
+            files: excalidrawAPI.getFiles(),
+            getDimensions: (width, height) => {
+              const max = width > height ? width : height
+              const scale = 512 / max
+              return {width: width > height ? 512 : width * scale, height: height > width ? 512 : height * scale, scale}
+            },
+            exportPadding: 10,
+          })
+          const file = new File([blob], "name.png", {type: 'image/png'})
+          const initData = window.Telegram.WebApp.initData
+          const formData = new FormData()
+          formData.append('file', file)
+          formData.append('initData', initData)
+          const response = await fetch('https://stickerpainterbot.altek.uz/sticker/create/', {
+            method: 'POST',
+            body: formData,
+          })
+          if (response.ok) {
+            try {
+              window.Telegram.WebApp.close()
+            } catch (e) {
+            }
+          }
+        }
+      }
+    })
   }, [])
 
   return (
