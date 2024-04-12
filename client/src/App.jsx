@@ -6,6 +6,7 @@ function App() {
   const [excalidrawAPI, setExcalidrawAPI] = useState(null)
 
   async function saveSticker(excalidrawAPI) {
+    console.log(excalidrawAPI)
     if (excalidrawAPI) {
       console.log('Есть excalidrawAPI')
       const elements = excalidrawAPI.getSceneElements()
@@ -53,7 +54,7 @@ function App() {
 
     tg.expand() //расширяем на все окно
 
-    tg.MainButton.text = "Save";//изменяем текст кнопки
+    tg.MainButton.text = "Save"//изменяем текст кнопки
     tg.MainButton.textColor = "#FFFFFF" //изменяем цвет текста кнопки
     tg.MainButton.color = "#70b1ec" //изменяем цвет бэкграунда кнопки
     tg.MainButton.show()
