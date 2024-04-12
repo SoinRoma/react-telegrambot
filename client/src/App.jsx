@@ -1,5 +1,5 @@
 import {Excalidraw, MainMenu, exportToBlob } from "@excalidraw/excalidraw"
-import {useState} from "react"
+import {useEffect, useState} from "react"
 
 function App() {
   const [excalidrawAPI, setExcalidrawAPI] = useState(null)
@@ -40,6 +40,21 @@ function App() {
       }
     }
   }
+
+  useEffect(()=>{
+    const tg = window.Telegram.WebApp //получаем объект webapp телеграма
+
+    tg.expand() //расширяем на все окно
+
+    tg.MainButton.text = "Save"; //изменяем текст кнопки
+    tg.MainButton.textColor = "#FFFFFF"; //изменяем цвет текста кнопки
+    tg.MainButton.color = "#70b1ec"; //изменяем цвет бэкграунда кнопки
+    tg.MainButton.show()
+
+    window.Telegram.WebApp.onEvent('mainButtonClicked', function(){
+      saveSticker()
+    });
+  }, [])
 
   return (
     <>
