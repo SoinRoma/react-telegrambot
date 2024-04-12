@@ -6,12 +6,9 @@ function App() {
   const [excalidrawAPI, setExcalidrawAPI] = useState(null)
 
   async function saveSticker(excalidrawAPI) {
-    console.log(excalidrawAPI)
     if (excalidrawAPI) {
-      console.log('Есть excalidrawAPI')
       const elements = excalidrawAPI.getSceneElements()
       if (elements || elements.length) {
-        console.log('Есть elements')
         const blob = await exportToBlob({
           elements,
           appState: {
@@ -31,18 +28,14 @@ function App() {
         const formData = new FormData()
         formData.append('file', file)
         formData.append('initData', initData)
-        console.log('До отправки!')
         const response = await fetch('https://stickerpainterbot.altek.uz/sticker/create/', {
           method: 'POST',
           body: formData,
         })
         if (response.ok) {
           try {
-            console.log('После отправки')
             window.Telegram.WebApp.close()
           } catch (e) {
-            console.log('Ошибка')
-            console.log(e)
           }
         }
       }
