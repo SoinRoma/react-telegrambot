@@ -53,6 +53,7 @@ function App() {
     tg.MainButton.show()
 
     window.Telegram.WebApp.onEvent('mainButtonClicked', function(){
+      tg.MainButton.showProgress(true)
       saveSticker()
     });
   }, [])
