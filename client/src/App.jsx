@@ -58,17 +58,18 @@ function App() {
     tg.MainButton.textColor = "#FFFFFF" //изменяем цвет текста кнопки
     tg.MainButton.color = "#70b1ec" //изменяем цвет бэкграунда кнопки
     tg.MainButton.show()
-
-    window.Telegram.WebApp.onEvent('mainButtonClicked', function(){
-      tg.MainButton.showProgress(true)
-      saveSticker(excalidrawAPI)
-    })
   }, [])
 
   return (
     <>
       <div className="your-app">
-        <Excalidraw langCode="ru-RU" excalidrawAPI={(api)=> setExcalidrawAPI(api)} >
+        <Excalidraw langCode="ru-RU" excalidrawAPI={(api)=> {
+          setExcalidrawAPI(api)
+          window.Telegram.WebApp.onEvent('mainButtonClicked', function(){
+            window.Telegram.WebApp.MainButton.showProgress(true)
+            saveSticker(api)
+          })
+        }} >
           <MainMenu>
             <MainMenu.Item onSelect={() => saveSticker(excalidrawAPI)}>Сохранить стикер</MainMenu.Item>
             <MainMenu.DefaultItems.ClearCanvas/>
