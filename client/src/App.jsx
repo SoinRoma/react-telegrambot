@@ -5,8 +5,7 @@ import './index.css'
 function App() {
   const [excalidrawAPI, setExcalidrawAPI] = useState(null)
 
-  async function saveSticker() {
-    console.log('Заходим в функцию!')
+  async function saveSticker(excalidrawAPI) {
     if (excalidrawAPI) {
       console.log('Есть excalidrawAPI')
       const elements = excalidrawAPI.getSceneElements()
@@ -61,8 +60,7 @@ function App() {
 
     window.Telegram.WebApp.onEvent('mainButtonClicked', function(){
       tg.MainButton.showProgress(true)
-      console.log('Нажимае на кнопку!')
-      saveSticker()
+      saveSticker(excalidrawAPI)
     })
   }, [])
 
@@ -71,7 +69,7 @@ function App() {
       <div className="your-app">
         <Excalidraw langCode="ru-RU" excalidrawAPI={(api)=> setExcalidrawAPI(api)} >
           <MainMenu>
-            <MainMenu.Item onSelect={() => saveSticker()}>Сохранить стикер</MainMenu.Item>
+            <MainMenu.Item onSelect={() => saveSticker(excalidrawAPI)}>Сохранить стикер</MainMenu.Item>
             <MainMenu.DefaultItems.ClearCanvas/>
             <MainMenu.DefaultItems.ChangeCanvasBackground/>
           </MainMenu>
